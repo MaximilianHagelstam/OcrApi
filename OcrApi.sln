@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrApi", "OcrApi\OcrApi.csproj", "{8928A0DA-B6BF-4BB5-B854-E7612D487F94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8928A0DA-B6BF-4BB5-B854-E7612D487F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8928A0DA-B6BF-4BB5-B854-E7612D487F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8928A0DA-B6BF-4BB5-B854-E7612D487F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8928A0DA-B6BF-4BB5-B854-E7612D487F94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54A23AC4-3211-4190-9717-D79FC852D137}
+	EndGlobalSection
+EndGlobal
