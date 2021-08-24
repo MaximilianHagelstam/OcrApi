@@ -22,6 +22,9 @@ namespace OcrApi.Controllers
         {
             var parseModel = _mapper.Map<Parse>(parseRequestDto);
 
+            parseModel.ParsedText = "this is pog";
+            parseModel.ProcessingTimeInMilliseconds = 5;
+
             var parseResponseDto = _mapper.Map<ParseResponseDto>(parseModel);
 
             return Ok(parseResponseDto);
