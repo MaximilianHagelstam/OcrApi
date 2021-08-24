@@ -5,9 +5,9 @@ namespace OcrApi.Dtos
     public class ParseResponseDto
     {
         [Required]
-        public string InputFile { get; set; }
+        public string ParsedText { get; set; }
 
         [Required]
-        public string InputLanguage { get; set; }
+        public int ProcessingTimeInMilliseconds { get; set; }
     }
 }

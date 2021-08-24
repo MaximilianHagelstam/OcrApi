@@ -24,7 +24,7 @@ namespace OcrApi.Controllers
 
             var parseResponseDto = _mapper.Map<ParseResponseDto>(parseModel);
 
-            // return Ok(nameof(GetBookById), new { Id = BookReadDto.Id }, BookReadDto);
+            return Ok(parseResponseDto);
         }
     }
 }
