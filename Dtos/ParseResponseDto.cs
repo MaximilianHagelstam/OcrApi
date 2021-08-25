@@ -8,6 +8,6 @@ namespace OcrApi.Dtos
         public string ParsedText { get; set; }
 
         [Required]
-        public int ProcessingTimeInMilliseconds { get; set; }
+        public long ProcessingTimeInMilliseconds { get; set; }
     }
 }
