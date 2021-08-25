@@ -17,9 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="hello.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="tessdata\afr.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
