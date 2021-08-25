@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using OcrApi.Models;
 using Tesseract;
@@ -10,24 +12,48 @@ namespace OcrApi.Controllers
     [Route("api/parse")]
     public class ParseController : ControllerBase
     {
-        [HttpPost]
-        public ActionResult<Parse> ParseFile()
+        public static IWebHostEnvironment _webHostEnvironment;
+
+        public ParseController(IWebHostEnvironment webHostEnvironment)
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
+            _webHostEnvironment = webHostEnvironment;
+        }
 
-            var image = Pix.LoadFromFile("hello.jpg");
-            TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
+        [HttpPost]
+        // ActionResult<Parse>
+        public string ParseFile([FromForm] FileUpload objectFile)
+        {
+            // Stopwatch stopWatch = new Stopwatch();
 
-            Page page = engine.Process(image, PageSegMode.Auto);
-            string result = page.GetText();
+            // stopWatch.Start();
 
-            stopWatch.Stop();
-            long timeSpan = stopWatch.ElapsedMilliseconds;
+            string path = _webHostEnvironment.WebRootPath + "\\uploads\\";
 
-            Parse parsedData = new Parse(result, timeSpan);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
 
-            return Ok(parsedData);
+            using (FileStream fileStream = System.IO.File.Create(path + objectFile.files.FileName))
+            {
+                objectFile.files.CopyTo(fileStream);
+                fileStream.Flush();
+                return "Uploaded";
+            }
+
+            // var image = Pix.LoadFromFile("hello.jpg");
+            // TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
+
+            // Page page = engine.Process(image, PageSegMode.Auto);
+            // string result = page.GetText();
+
+            // long timeSpan = stopWatch.ElapsedMilliseconds;
+
+            // Parse parsedData = new Parse(result, timeSpan);
+
+            // stopWatch.Stop();
+
+            // return Ok(parsedData);
         }
     }
 }
