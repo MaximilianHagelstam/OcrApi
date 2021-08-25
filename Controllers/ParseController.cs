@@ -20,12 +20,11 @@ namespace OcrApi.Controllers
         }
 
         [HttpPost]
-        // ActionResult<Parse>
-        public string ParseFile([FromForm] FileUpload objectFile)
+        public ActionResult<Parse> ParseFile([FromForm] FileUpload objectFile)
         {
-            // Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new Stopwatch();
 
-            // stopWatch.Start();
+            stopWatch.Start();
 
             string path = _webHostEnvironment.WebRootPath + "\\uploads\\";
 
@@ -38,22 +37,21 @@ namespace OcrApi.Controllers
             {
                 objectFile.files.CopyTo(fileStream);
                 fileStream.Flush();
-                return "Uploaded";
             }
 
-            // var image = Pix.LoadFromFile("hello.jpg");
-            // TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
+            var image = Pix.LoadFromFile("hello.jpg");
+            TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
 
-            // Page page = engine.Process(image, PageSegMode.Auto);
-            // string result = page.GetText();
+            Page page = engine.Process(image, PageSegMode.Auto);
+            string result = page.GetText();
 
-            // long timeSpan = stopWatch.ElapsedMilliseconds;
+            long timeSpan = stopWatch.ElapsedMilliseconds;
 
-            // Parse parsedData = new Parse(result, timeSpan);
+            Parse parsedData = new Parse(result, timeSpan);
 
-            // stopWatch.Stop();
+            stopWatch.Stop();
 
-            // return Ok(parsedData);
+            return Ok(parsedData);
         }
     }
 }
