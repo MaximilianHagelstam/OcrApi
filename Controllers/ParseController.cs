@@ -39,7 +39,7 @@ namespace OcrApi.Controllers
                 fileStream.Flush();
             }
 
-            var image = Pix.LoadFromFile("wwwroot/uploads/" + objectFile.files.FileName);
+            var image = Pix.LoadFromFile(path + objectFile.files.FileName);
             TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
 
             Page page = engine.Process(image, PageSegMode.Auto);
@@ -48,6 +48,8 @@ namespace OcrApi.Controllers
             long timeSpan = stopWatch.ElapsedMilliseconds;
 
             Parse parsedData = new Parse(result, timeSpan);
+
+            System.IO.File.Delete(path + objectFile.files.FileName);
 
             stopWatch.Stop();
 
