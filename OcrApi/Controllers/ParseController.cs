@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using OcrApi.Models;
 using Tesseract;
@@ -11,13 +10,6 @@ namespace OcrApi.Controllers
     [Route("api/[controller]")]
     public class ParseController : ControllerBase
     {
-        public static IWebHostEnvironment _webHostEnvironment;
-
-        public ParseController(IWebHostEnvironment webHostEnvironment)
-        {
-            _webHostEnvironment = webHostEnvironment;
-        }
-
         [HttpPost]
         public ActionResult<Parse> ParseFile([FromForm] FileUpload objectFile)
         {
@@ -25,12 +17,7 @@ namespace OcrApi.Controllers
 
             stopWatch.Start();
 
-            string path = _webHostEnvironment.WebRootPath + "\\uploads\\";
-
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+            string path = Path.GetTempPath();
 
             using (FileStream fileStream = System.IO.File.Create(path + objectFile.Files.FileName))
             {
