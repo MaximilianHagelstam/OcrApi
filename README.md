@@ -4,4 +4,4 @@ Open-source OCR API
 
 ## Endpoints
 
-POST /parse
+POST api/parse
