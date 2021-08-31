@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,7 @@ using Tesseract;
 namespace OcrApi.Controllers
 {
     [ApiController]
-    [Route("api/parse")]
+    [Route("api/[controller]")]
     public class ParseController : ControllerBase
     {
         public static IWebHostEnvironment _webHostEnvironment;
@@ -22,7 +21,7 @@ namespace OcrApi.Controllers
         [HttpPost]
         public ActionResult<Parse> ParseFile([FromForm] FileUpload objectFile)
         {
-            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new();
 
             stopWatch.Start();
 
@@ -33,23 +32,23 @@ namespace OcrApi.Controllers
                 Directory.CreateDirectory(path);
             }
 
-            using (FileStream fileStream = System.IO.File.Create(path + objectFile.files.FileName))
+            using (FileStream fileStream = System.IO.File.Create(path + objectFile.Files.FileName))
             {
-                objectFile.files.CopyTo(fileStream);
+                objectFile.Files.CopyTo(fileStream);
                 fileStream.Flush();
             }
 
-            var image = Pix.LoadFromFile(path + objectFile.files.FileName);
-            TesseractEngine engine = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
+            var image = Pix.LoadFromFile(path + objectFile.Files.FileName);
+            TesseractEngine engine = new("./tessdata", "eng", EngineMode.Default);
 
             Page page = engine.Process(image, PageSegMode.Auto);
             string result = page.GetText();
 
             long timeSpan = stopWatch.ElapsedMilliseconds;
 
-            Parse parsedData = new Parse(result, timeSpan);
+            Parse parsedData = new(result, timeSpan);
 
-            System.IO.File.Delete(path + objectFile.files.FileName);
+            System.IO.File.Delete(path + objectFile.Files.FileName);
 
             stopWatch.Stop();
 

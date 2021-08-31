@@ -1,5 +1,3 @@
-using System;
-
 namespace OcrApi.Models
 {
     public class Parse
