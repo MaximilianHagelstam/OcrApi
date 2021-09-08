@@ -15,7 +15,7 @@ Check out the [live demo](https://ocrapi.azurewebsites.net/api/home/)
 ## Getting started
 
 1. Install the [.NET 5 SDK](https://dotnet.microsoft.com/download)
-2. Clone this repo using `git clone --depth=1 https://github.com/MaximilianHagelstam/ocrapi.git <YOUR_PROJECT_NAME>`
+2. Clone this repo using `git clone --depth=1 https://github.com/MaximilianHagelstam/OcrApi.git <YOUR_PROJECT_NAME>`
 3. Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.
 4. Run `dotnet restore` to install dependencies.
 5. Run `dotnet run` to start the app.
