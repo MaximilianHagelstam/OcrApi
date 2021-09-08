@@ -6,7 +6,7 @@ POST /api/parse with an image in the request body will return the parsed text an
 
 ![screenshot](screenshot.png)
 
-Check out the [live demo](https://ocrapi.azurewebsites.net/api/home/)
+Check out the [live demo](https://ocrapi.azurewebsites.net/api/home/) (if it dosen't work, I have ran out of Azure credits)
 
 ## Requirements
 
